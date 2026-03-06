@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         czyZlicza = true;
+                        textViewCzas.setText(zrobLadnyCzas(ileSekund));
                         //ta funkcja zmienna wartosc czy zlicza na true
                         // i dziala tak, zeby jak uzytkownik nacisnie start
                         //to czas zaczyna sie odliczac
@@ -74,9 +75,20 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         ileSekund = 0;
+                        textViewCzas.setText(zrobLadnyCzas(ileSekund));
                     }
                 }
         );
 
+
     }
+    private String zrobLadnyCzas(int ileSekund) {
+        int sekundy = ileSekund%60;
+        int minuty = (ileSekund/60)%60;
+        int godziny = ileSekund/3600;
+        //return godziny +":"+minuty+":"+ sekundy;
+        return String.format("%02d:%02d:%02d", godziny, minuty, sekundy);
+
+    }
+
 }
