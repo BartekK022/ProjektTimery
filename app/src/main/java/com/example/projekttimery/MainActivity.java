@@ -2,6 +2,7 @@ package com.example.projekttimery;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewCzas;
     Button buttonstart, buttonstop, buttonreset, buttonzapisz;
     int ileSekund = 0;
+    boolean czyZlicza = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +36,44 @@ public class MainActivity extends AppCompatActivity {
                 new Runnable() {
                     @Override
                     public void run() {
-                        ileSekund++;
-                        textViewCzas.setText(""+ileSekund);
+                        if (czyZlicza) {
+                            ileSekund++;
+                            textViewCzas.setText("" + ileSekund);
+                        }
                         handler.postDelayed(this, 1000);
                         //Argumentem jest ta funkcja, a drugi ile milisekund.
                         //ta funkcja liczy sekundy od zalaczenia aplikacji
                         // jest niezależna od przyciskow(dziala sama
+                    }
+                }
+        );
+
+        buttonstart.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        czyZlicza = true;
+                        //ta funkcja zmienna wartosc czy zlicza na true
+                        // i dziala tak, zeby jak uzytkownik nacisnie start
+                        //to czas zaczyna sie odliczac
+                    }
+                }
+        );
+
+        buttonstop.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        czyZlicza = false;
+
+                    }
+                }
+        );
+        buttonreset.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ileSekund = 0;
                     }
                 }
         );
