@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
                         ileSekund++;
                         textViewCzas.setText(""+ileSekund);
                         handler.postDelayed(this, 1000);
+                        //Argumentem jest ta funkcja, a drugi ile milisekund.
+                        //ta funkcja liczy sekundy od zalaczenia aplikacji
+                        // jest niezależna od przyciskow(dziala sama
                     }
                 }
         );
